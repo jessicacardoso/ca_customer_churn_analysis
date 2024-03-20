@@ -143,3 +143,98 @@ Já para as demais variáveis nominais, notamos que a maioria dos clientes que c
 <br/>
 <i>Figura 6: Gráfico comparativo das variáveis nominais</i>
 </div>
+
+Também analisamos a correlação entre algumas das variáveis do conjunto de dados, e notamos que os atributos `meses_de_permanencia` e `receita_total` apresentam uma forte correlação positiva. A Figura 7 apresenta o mapa de calor da matriz de correlação entre as variáveis numéricas.
+
+<div align="center">
+<img src="imgs/correlacao.png" alt="Mapa de calor da matriz de correlação">
+<br/>
+<i>Figura 7: Mapa de calor da matriz de correlação</i>
+</div>
+
+
+
+### Modelagem
+
+Começamos dividimos o conjunto de dados em treino e teste, com a proporção de 80% dos dados para treino e 20% para teste.  Para manter a representatividade da variável dependente, realizamos a divisão dos dados de forma estratificada. Fazemos isso para garantir que a distribuição da variável dependente seja mantida em ambas as partições. Na Figura 8, apresentamos um exemplo de como é feita a divisão estratificada dos dados.
+
+<div align="center">
+<img src="imgs/divisao_estratificada.png" alt="Divisão estratificada dos dados">
+<br/>
+<i>Figura 8: Divisão estratificada dos dados.<br/>Fonte: <a href="https://www.scribbr.com/methodology/stratified-sampling/">Lauren Thomas (2018)</a></i>
+</div>
+
+Depois disso, usamos a técnica de k-fold para validação cruzada estratificada nos dados de treino. A validação cruzada é uma técnica que consiste em dividir o conjunto de dados em k partições, treinar o modelo em k-1 partições e testá-lo na partição restante. Devido a natureza desbalanceada do dado (26,5% de churn), testamos abordagens de balanceamento de classe, como a técnica de *oversampling* e *undersampling*. Para avaliar o desempenho dos modelos, usamos a métrica F1 em conjunto com busca de hiperparâmetros por meio do *[optuna](https://optuna.org/)*. Com base na busca de abordagens e modelos, vimos que o balanceamento de classe não melhorou de forma significativa o desempenho dos modelos. A Figura 9 apresenta o desempenho dos modelos com e sem reamostragem.
+
+<div align="center">
+<img src="imgs/reamostragem_desempenho.png" alt="Desempenho dos modelos com e sem reamostragem">
+<br/>
+<i>Figura 9: Desempenho dos modelos com e sem reamostragem</i>
+</div>
+
+Com base nos resultados da busca de hiperparâmetros, escolhemos não prosseguir com a reamostragem dos dados. A Figura 10 apresenta o desempenho de cada modelo durante a busca de hiperparâmetros. Vemos que os modelos com melhor desempenho foram a *Regresão Logística*, *SVM Linear* e *LightGBM*.
+
+<div align="center">
+<img src="imgs/desempenho_modelos.png" alt="Desempenho dos modelos durante a busca de hiperparâmetros">
+<br/>
+<i>Figura 10: Desempenho dos modelos durante a busca de hiperparâmetros</i>
+</div>
+
+Validamos os melhores modelos sem ajuste de hiperparâmetros, métricas na Tabela 3, na configuração base o *SVM Linear* obteve melhor F1 e cobertura (*recall*).
+
+<div align="center">
+<i>Tabela 3: Desempenho dos modelos durante a validação cruzada estratificada.</i>
+
+| clf_name           | ('f1_score', 'mean')   | ('f1_score', 'std')   | ('precision_score', 'mean')   | ('precision_score', 'std')   | ('recall_score', 'mean')   | ('recall_score', 'std')   | ('accuracy_score', 'mean')   | ('accuracy_score', 'std')   | ('roc_auc_score', 'mean')   | ('roc_auc_score', 'std')   |
+|:-------------------|:-----------------------|:----------------------|:------------------------------|:-----------------------------|:---------------------------|:--------------------------|:-----------------------------|:----------------------------|:----------------------------|:---------------------------|
+| LinearSVC          | 62.64%                 | 3.08%                 | 52.24%                        | 2.93%                        | 78.23%                     | 3.4%                      | 75.21%                       | 2.3%                        | 76.18%                      | 2.55%                      |
+| LogisticRegression | 62.64%                 | 3.46%                 | 52.53%                        | 3.31%                        | 77.63%                     | 3.84%                     | 75.41%                       | 2.54%                       | 76.12%                      | 2.85%                      |
+| LGBMClassifier     | 61.87%                 | 2.5%                  | 53.95%                        | 2.92%                        | 72.6%                      | 2.68%                     | 76.23%                       | 1.95%                       | 75.07%                      | 1.89%                      |
+| DummyClassifier    | 29.49%                 | 3.17%                 | 29.42%                        | 2.79%                        | 29.6%                      | 3.74%                     | 62.53%                       | 1.39%                       | 52.01%                      | 2.01%                      |
+
+</div>
+
+
+Na busca de hiperparâmetros que gerou a Figura 10, o melhor modelo selecionado foi o *LGBMClassifier*. A performance atingida foi aproximadamente 64% de F1. A Figura 11 apresenta o desempenho desses modelos durante a busca de hiperparâmetros.
+
+<div align="center">
+<img src="imgs/busca_hiperparametros_melhores.png" alt="Desempenho dos melhores modelos durante a busca de hiperparâmetros">
+<br/>
+<i>Figura 11: Desempenho dos melhores modelos durante a busca de hiperparâmetros</i>
+</div>
+
+Avaliamos o desempenho dos três modelos no conjunto de teste, conforme mostrado na Tabela 4. O modelo *LGBMClassifier* teve um desempenho um pouco melhor em relação ao *recall* e *F1* em comparação com os demais modelos.
+
+<div align="center">
+<i>Tabela 4: Desempenho dos modelos no conjunto de teste.</i>
+
+| classifier         | f1     | precision   | recall   | accuracy   | roc_auc   |
+|:-------------------|:-------|:------------|:---------|:-----------|:----------|
+| **LGBMClassifier**     | **61.28%** | 50.79%      | **77.21%**   | 74.15%     | 75.13%    |
+| LogisticRegression | 60.06% | 49.82%      | 75.6%    | 73.37%     | 74.08%    |
+| LinearSVC          | 59.94% | 50.0%       | 74.8%    | 73.51%     | 73.92%    |
+| DummyClassifier    | 29.4%  | 30.14%      | 28.69%   | 63.49%     | 52.36%    |
+
+</div>
+
+Observando a matriz de confusão, constatamos que o modelo destacado conseguiu identificar um pouco mais de clientes que cancelaram o serviço, mas uma diferença pouco relevante. A Figura 12 apresenta a matriz de confusão dos modelos no conjunto de teste.
+
+<div align="center">
+<img src="imgs/matriz_confusao.png" alt="Matriz de confusão dos modelos no conjunto de teste">
+<br/>
+<i>Figura 12: Matriz de confusão dos modelos no conjunto de teste</i>
+</div>
+
+> [!IMPORTANT]
+> Todos os modelos foram treinados com o parâmetro `class_weight='balanced'` para lidar com o desbalanceamento da variável dependente.
+
+
+## Conclusão 📝
+
+Neste projeto, realizamos uma análise de *churn* para uma empresa do setor financeiro. Começamos com uma análise exploratória dos dados, identificando padrões e comportamentos das variáveis. Em seguida, trabalhamos na modelagem, treinando e validando diferentes modelos de classificação. Avaliamos o desempenho dos modelos no conjunto de teste, e o modelo *LGBMClassifier* obteve o melhor desempenho, com aproximadamente 61% de F1.
+
+Com base nas análises realizadas, identificamos que a *receita mensal* e o *tempo de permanência* são variáveis com relação ao *churn*. Assim, recomendamos que a empresa contratante foque em estratégias voltadas a clientes com maior receita mensal e menor tempo de permanência. Por exemplo, incentivar assinaturas de longo prazo (trimestral e anual) oferecendo descontos e benefícios. Também sugerimos a implementação de um programa de fidelidade, recompensando os usuários que utilizam mais as features do sistema ou que permanecem por mais tempo com o serviço.
+
+Importante destacar que esse modelo é uma estratégia auxiliar para identificar clientes com maior probabilidade de cancelamento. Tal ferramenta deve ser utilizada em conjunto com outras estratégias, como pesquisas de satisfação, feedbacks e análises comportamentais. Também é importante ressaltar que o modelo precisa ser avaliado periodicamente, para possíveis ajustes e melhorias.
+
+Como próximos passos, poderíamos investigar o histórico de reclamações e feedbacks dos clientes, com o intuito de identificar tópicos recorrentes e possíveis problemas através de análise de sentimentos. Também podemos considerar a implementação de um modelo de séries temporais para prever o *churn* com base em dados históricos baseados em comportamentos e tendências.
