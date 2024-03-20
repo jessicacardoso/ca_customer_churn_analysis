@@ -29,7 +29,7 @@ O conjunto de dados é composto por 21 colunas e 7043 linhas, sendo `Churn` a va
 |Variável|Descrição|Tipo|Escala|
 |---|---|---|---|
 |`ID`|Identificação do cliente|Qualitativo|Nominal|
-|`Tipo de empresa`|Tipo de empresa|Qualitativo|Nominal|
+|`Tipo de empresa`|Tipo de empresa|Qualitativo|Ordinal|
 |`Fundação da empresa`|Ano de fundação da empresa|Quantitativo discreto|Racional|
 |`Possui mais de um sócio`|Se a empresa possui mais de um sócio|Qualitativo|Nominal|
 |`Funcionários`|Número de funcionários|Qualitativo|Ordinal|
@@ -43,7 +43,7 @@ O conjunto de dados é composto por 21 colunas e 7043 linhas, sendo `Churn` a va
 |`Frequência de utilização de feature do sistema: Módulo de vendas`|Frequência de utilização de feature do sistema|Qualitativo|Ordinal|
 |`Frequência de utilização de feature do sistema: Relatórios`|Frequência de utilização de feature do sistema|Qualitativo|Ordinal|
 |`Frequência de utilização de feature do sistema: Utilização de APIs de integração`|Frequência de utilização de feature do sistema|Qualitativo|Ordinal|
-|`Contrato`|Tipo de contrato|Qualitativo|Nominal|
+|`Contrato`|Tipo de contrato|Qualitativo|Ordinal|
 |`Emite boletos`|Se emite boletos, sendo sim ou não|Qualitativo|Nominal|
 |`Tipo de pagamento`|Tipo de pagamento|Qualitativo|Nominal|
 |`Receita mensal`|Receita mensal do cliente|Quantitativo contínuo|Racional|
