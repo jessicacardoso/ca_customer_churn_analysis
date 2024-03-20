@@ -23,6 +23,10 @@ optuna = "^3.6.0"
 xgboost = "^2.0.3"
 lightgbm = "^4.3.0"
 mlxtend = "^0.23.1"
+gower = "^0.1.2"
+scikit-learn-extra = "^0.3.0"
+umap = "^0.1.1"
+shap = "^0.45.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.6.2"
