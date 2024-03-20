@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Análise de <em>churn</em> para uma empresa do setor financeiro 📉💼</h1>
+<h1>Teste Cientista de Dados - Análise de <em>churn</em>📉💼</h1>
 <img src="imgs/cliente.png" height="400" alt="Mapa mental dos dados">
 </div>
 
