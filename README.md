@@ -245,7 +245,6 @@ Como próximos passos, poderíamos investigar o histórico de reclamações e fe
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 
 - [Python](https://www.python.org/)
-- [Pip](https://pip.pypa.io/en/stable/installing/)
 - [Git](https://git-scm.com/)
 - [BigQuery](https://cloud.google.com/bigquery)
 
