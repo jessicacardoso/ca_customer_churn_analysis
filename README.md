@@ -238,3 +238,49 @@ Com base nas análises realizadas, identificamos que a *receita mensal* e o *tem
 Importante destacar que esse modelo é uma estratégia auxiliar para identificar clientes com maior probabilidade de cancelamento. Tal ferramenta deve ser utilizada em conjunto com outras estratégias, como pesquisas de satisfação, feedbacks e análises comportamentais. Também é importante ressaltar que o modelo precisa ser avaliado periodicamente, para possíveis ajustes e melhorias.
 
 Como próximos passos, poderíamos investigar o histórico de reclamações e feedbacks dos clientes, com o intuito de identificar tópicos recorrentes e possíveis problemas através de análise de sentimentos. Também podemos considerar a implementação de um modelo de séries temporais para prever o *churn* com base em dados históricos baseados em comportamentos e tendências.
+
+##  Como Executar o Projeto 🚀
+
+### Pré-requisitos
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+
+- [Python](https://www.python.org/)
+- [Pip](https://pip.pypa.io/en/stable/installing/)
+- [Git](https://git-scm.com/)
+- [BigQuery](https://cloud.google.com/bigquery)
+
+Além disto é bom ter um editor para trabalhar com o código, como [VSCode](https://code.visualstudio.com/)
+
+### 🧭 Rodando os notebooks
+
+```bash
+# Clone este repositório
+$ git clone https://github.com/jessicacardoso/ca_customer_churn_analysis.git
+```
+
+```bash
+# Acesse a pasta do projeto no terminal/cmd
+$ cd ca_customer_churn_analysis
+```
+
+```bash
+# Instale as dependências
+$ pip install -r requirements.txt
+```
+
+```bash
+# Troque para a pasta do notebooks
+$ cd notebooks
+```
+
+```bash
+# Execute o Jupyter Notebook
+$ jupyter notebook
+```
+
+Os notebooks estão organizados da seguinte forma:
+
+1. [Análise exploratória de dados](notebooks/1.eda.ipynb)
+2. [Modelagem](notebooks/2.modelagem.ipynb)
+3. [Clusterização](notebooks/3.clusterizacao.ipynb)
+4. [Explicabilidade com Shap](notebooks/4.explicabilidade.ipynb)
