@@ -1235,9 +1235,9 @@ referencing==0.34.0 ; python_version >= "3.11" and python_version < "3.12" \
 requests-oauthlib==1.4.0 ; python_version >= "3.11" and python_version < "3.12" \
     --hash=sha256:7a3130d94a17520169e38db6c8d75f2c974643788465ecc2e4b36d288bf13033 \
     --hash=sha256:acee623221e4a39abcbb919312c8ff04bd44e7e417087fb4bd5e2a2f53d5e79a
-requests==2.31.0 ; python_version >= "3.11" and python_version < "3.12" \
-    --hash=sha256:58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f \
-    --hash=sha256:942c5a758f98d790eaed1a29cb6eefc7ffb0d1cf7af05c3d2791656dbd6ad1e1
+requests==2.32.2 ; python_version >= "3.11" and python_version < "3.12" \
+    --hash=sha256:dd951ff5ecf3e3b3aa26b40703ba77495dab41da839ae72ef3c8e5d8e2433289 \
+    --hash=sha256:fc06670dd0ed212426dfeb94fc1b983d917c4f9847c863f313c9dfaaffb7c23c
 rpds-py==0.18.0 ; python_version >= "3.11" and python_version < "3.12" \
     --hash=sha256:01e36a39af54a30f28b73096dd39b6802eddd04c90dbe161c1b8dbe22353189f \
     --hash=sha256:044a3e61a7c2dafacae99d1e722cc2d4c05280790ec5a05031b3876809d89a5c \
