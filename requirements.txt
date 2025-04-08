@@ -511,9 +511,9 @@ grpcio==1.62.1 ; python_version >= "3.11" and python_version < "3.12" \
     --hash=sha256:f8de7c8cef9261a2d0a62edf2ccea3d741a523c6b8a6477a340a1f2e417658de \
     --hash=sha256:fa7d28eb4d50b7cbe75bb8b45ed0da9a1dc5b219a0af59449676a29c2eed9698 \
     --hash=sha256:fbe80577c7880911d3ad65e5ecc997416c98f354efeba2f8d0f9112a67ed65a5
-idna==3.6 ; python_version >= "3.11" and python_version < "3.12" \
-    --hash=sha256:9ecdbbd083b06798ae1e86adcbfe8ab1479cf864e4ee30fe4e46a003d12491ca \
-    --hash=sha256:c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f
+idna==3.7 ; python_version >= "3.11" and python_version < "3.12" \
+    --hash=sha256:028ff3aadf0609c1fd278d8ea3089299412a7a8b9bd005dd08b9f8285bcb5cfc \
+    --hash=sha256:82fee1fc78add43492d3a1898bfa6d8a904cc97d8427f683ed8e798d07761aa0
 imbalanced-learn==0.12.0 ; python_version >= "3.11" and python_version < "3.12" \
     --hash=sha256:02ef5bc9ef046f44aa20353a904366a948f7944155e77b6f09b500a70981fd13 \
     --hash=sha256:b9ccd9aaa3028699079d43a6d4d9fc9d039f55376733b31f87c7d9b125dcc165
